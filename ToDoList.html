@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="utf-8" />
+  <title>to do list</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: url(https://images.hdqwalls.com/download/abstract-dark-wood-lo-1920x1080.jpg);
+      border: 5px black solid;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-family: sans-serif;
+      font-weight: 800;
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+      margin-top: 100px;
+      font-size: 50px;
+      text-shadow: 20px 20px 20px black;
+
+    }
+
+    #menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+
+    #loop {
+      background-color: gray;
+      border: solid 1px black;
+      border-radius: 5px;
+      width: 40vw;
+      height: 4vh;
+      box-shadow: 0px 0px 10px black;
+      opacity: 0.7;
+    }
+
+    #loop:hover {
+      opacity: 1;
+      transition: 0.5s all linear;
+    }
+
+    #loop::placeholder {
+      color: black;
+      border-bottom: black 1px solid;
+      width: 90%;
+      text-shadow: 5px 5px 5px black;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      position: relative;
+      left: 28%;
+      font-family: sans-serif;
+      font-size: 30px;
+      color: tan;
+      opacity: 0.7;
+      text-shadow: 10px 10px 10px black;
+
+    }
+
+    h3 {
+      margin-bottom: 80px;
+      position: relative;
+      font-family: sans-serif;
+      font-size: 25px;
+      color: gray;
+      text-shadow: 10px 10px 10px black;
+      left: 25%
+    }
+
+    #sticky {
+      display: flex;
+      width: 80vw;
+      margin-top: 30px;
+      height: 50vh
+    }
+
+    li {
+      width: 15vw;
+      height: 20vh;
+      display: flex;
+      align-items: center;
+      align-content: space-around;
+      justify-content: space-around;
+      border-radius: 10px;
+      border: 2px black solid;
+      box-shadow: 10px 10px 50px white;
+      background-size: 10vh 10vw;
+      color: black;
+      text-shadow: 5px 5px 5px black;
+      font-size: 25px;
+      font-weight: 500;
+      background-position: top 50% left 50%;
+      opacity: 0.7;
+      position: relative;
+      overflow: visible;
+      word-wrap: break-word;
+      background: url(https://media.istockphoto.com/vectors/yellow-sticky-li-attached-metal-paper-clip-template-for-design-vector-id1239777406?k=20&m=1239777406&s=170667a&w=0&h=fS67y-2B6I6_Pv-nqw3wRGhHW14bUWmWNxW7XkGOsCw=)no-repeat;
+
+    }
+
+    #note {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      width: 80vw;
+      height: 50vh;
+
+    }
+
+    /* li::placeholder{
+  color: red;
+  border-bottom: 2px greenyellow solid;
+  width:70%;
+  position:relative;
+  top: -40%;
+  opacity:0.3;
+} */
+    li:hover {
+      width: 17vw;
+      height: 22vh;
+      border: solid gray 3px;
+      transition: 0.5s ease all;
+      opacity: 0.85;
+    }
+
+    li:not(hover) {
+      width: 15vw;
+      height: 20vh;
+      border: solid black 2px;
+      transition: 0.5s ease all;
+    }
+
+    #sticky button:last-of-type {
+      position: absolute;
+      background: url(https://cdn-icons.flaticon.com/png/128/2377/premium/2377874.png?token=exp=1645306862~hmac=fc1f32b8e3b09d07b80265152ed1f918)no-repeat;
+      background-position: top 50% left 50%;
+      background-size: 20px 20px;
+      transform: rotate(45deg);
+      width: 25px;
+      height: 25px;
+      top: 2%;
+      right: 2%;
+      border-radius: 50%;
+      border: black solid 1px;
+      overflow: visible;
+      box-shadow: 0px 0px 10px 1px red;
+
+    }
+
+    li #buton:hover {
+      transition: 0.2s all cubic-bezier(0.71, -0.43, 0.29, 1.68);
+      height: 31px;
+      width: 31px;
+      box-shadow: 0px 0px 10px 1px orange, inset 0px 0px 5px 1px orange;
+
+    }
+
+    li #buton {
+      background: url(https://cdn-icons.flaticon.com/png/128/2280/premium/2280532.png?token=exp=1645306813~hmac=363c7b2e7b1c8b59634d0ceca00c20f6)no-repeat;
+      position: absolute;
+      top: 2%;
+      right: 15%;
+      width: 25px;
+      height: 25px;
+      background-position: top 50% left 55%;
+      background-size: 16px 16px;
+      box-shadow: 0px 0px 10px 1px orange;
+      border-radius: 50%;
+      border: black solid 1px;
+    }
+
+    .delete {
+      position: relative;
+    }
+
+
+
+    #sticky button:last-of-type:hover {
+      transition: 0.2s all cubic-bezier(0.71, -0.43, 0.29, 1.68);
+      height: 31px;
+      width: 31px;
+      box-shadow: 0px 0px 10px 1px red, inset 0px 0px 5px 1px red;
+    }
+
+    span {
+      position: absolute;
+      top: -15%;
+      left: 5%;
+      color: white;
+      text-shadow: 0px 0px 10px black;
+
+    }
+
+    #menu #przycisk {
+      width: 50px;
+      height: 35px;
+      background:url(https://cdn-icons.flaticon.com/png/128/1940/premium/1940752.png?token=exp=1645306799~hmac=d6cfe28e7f44a923655db775188be137)no-repeat;
+      background-size: 25px 25px;
+      margin-left: 15px;
+      background-position: top 50% left 50%;
+      border: 2px orange solid;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px orange;
+    }
+
+    #menu #przycisk:hover {
+      width: 55px;
+      height: 37px;
+      border: 2px white solid;
+      box-shadow: 0px 0px 10px white, inset 0px 0px 13px white;
+      transition: all 0.1s linear;
+      background: url(https://cdn-icons-png.flaticon.com/128/16/16294.png)no-repeat;
+      background-position: top 50% left 50%;
+      background-size: 25px 25px;
+    }
+
+    #main {
+      height: 200px;
+      width: 200px;
+      background-color: #181818;
+      border-radius: 30%;
+      box-shadow: 40px 35px 30px #0000008c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      overflow: hidden
+    }
+
+    #border {
+      height: 1000px;
+      width: 1000px;
+      background-image: conic-gradient(gray 5deg, transparent 100deg);
+      position: absolute;
+      overflow: hidden;
+      animation: rotating 2s infinite normal linear;
+      z-index: 2
+    }
+
+    #shell {
+      height: 175px;
+      width: 175px;
+      border-radius: 30%;
+      position: absolute;
+      background: #181818;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 0px 0px 15px white;
+      font-size: 15px;
+      font-weight: 800;
+      font-family: sans-serif;
+      letter-spacing: 5px;
+      box-shadow: inset 30px 30px 30px #0000008c;
+      z-index: 3;
+      top: 6%;
+      left: 6%
+    }
+
+    sup {
+      font-size: 10px;
+      position: relative;
+      top: 10%;
+    }
+
+    @keyframes rotating {
+      0% {
+        transform: rotate(0deg)
+      }
+
+      100% {
+        transform: rotate(-360deg)
+      }
+    }
+
+    #animation {
+      position: absolute;
+      left: 5%;
+      top: 5%
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      let tasks = document.getElementById("note");
+      let dodaj = document.getElementById("przycisk");
+      let counter = 1;
+      dodaj.addEventListener("click", (event) => {
+        while (tasks.children.length > 9) {
+          alert("You add to much task, slowly, it is too much to do");
+          return;
+        }
+        let lupa = document.getElementById("loop").value;
+        if (lupa == "") {
+          lupa = "Task undefined";
+        }
+        while (lupa.length > 50) {
+          alert("Your task's content iss too long, slowly");
+          return;
+        }
+        let btn = document.createElement("button")
+        btn.addEventListener('click', function () {
+          lupa = prompt("Edit your task");
+          if (lupa.length < 50) {
+            this.parentNode.firstChild.textContent = lupa
+          }
+          while (lupa.length > 50) {
+            lupa = prompt("Your edited task's content is too long, slowly");
+            if (lupa.length < 50) {
+              this.parentNode.firstChild.textContent = lupa
+            }
+          }
+          // if(i.length > 50){
+          //   i = prompt("Your edited task's content iss too long, slowly");
+          // }else(this.parentNode.firstChild.textContent = i);
+          // return; - dfrnt way
+        });
+
+        btn.setAttribute("id", "buton")
+        let task = document.createElement("li");
+        task.innerHTML = lupa;
+        let notatka = document.createElement("span")
+        notatka.innerHTML = "Note:" + tasks.children.length 
+        
+        task.setAttribute("data-task", counter)
+        let del = document.createElement("button");
+
+        del.addEventListener("click", function (event) {
+          this.parentElement.parentElement.removeChild(this.parentElement);
+        });
+        task.appendChild(notatka);
+        task.appendChild(btn);
+        task.appendChild(del);
+        tasks.appendChild(task);
+        counter++;
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <h1>To Do List 2022</h1>
+    <h2>Input your responsibilities and assumptions to </h2>
+    <h3>When you finish your tasks, remove text and wrtie another one again</h3>
+    <div id="menu">
+      <input type="text" placeholder="Add to list" id="loop">
+      <button id="przycisk">
+      </button>
+    </div>
+
+    <div id="sticky">
+      <ul id="note">
+          
+      </ul>
+    </div>
+    <div id="animation">
+      <div id="shell" data-tilt>H4NTER<sup>coding</sup></div>
+      <div id="main" data-tilt>
+        <div id="border"></div>
+      </div>
+    </div>
+
+
+  </div>
+
+</body>
+
+
+
+
+
+</html>
